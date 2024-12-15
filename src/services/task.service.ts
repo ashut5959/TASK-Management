@@ -22,7 +22,6 @@ export class TaskService {
 
   // Create a new task
   public async createTask(taskData: Omit<Task, "id" | "user">): Promise<Task> {
-    console.log(taskData);
     const newTask = await this.prisma.task.create({
       data: { ...taskData },
     });
@@ -60,9 +59,7 @@ export class TaskService {
       },
     });
 
-    console.log(task);
     if (!task) {
-      console.log(task);
       throw new AppError("Task not found", 404); // Throw error if task not found
     }
     return task;
@@ -74,7 +71,6 @@ export class TaskService {
     taskId: number,
     updatedData: Partial<Omit<Task, "id" | "userId" | "user">>
   ): Promise<Task> {
-    console.log(updatedData);
     const task = await this.prisma.task.update({
       where: {
         id: taskId,

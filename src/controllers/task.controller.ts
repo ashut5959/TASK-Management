@@ -27,7 +27,6 @@ export class TaskController {
     });
   }
   public async getTasks(req: Request, res: Response): Promise<void> {
-    console.log(req.query)
     const userId = req.body.user.id; // Assuming req.user is populated by authentication middleware
     const filters = req.query.filters
       ? JSON.parse(req.query.filters as string)
